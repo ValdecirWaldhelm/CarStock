@@ -1,14 +1,19 @@
 import express from "express";
 import routes from "./routes";
+import mongoose from 'mongoose';
 require('dotenv').config();
 
 class App{
     constructor(){
-
-        // const DB_USER = process.env.DB_USER;
-        // const DB_PASSWORD = encodeURIComponent(process.env.DB_PASSWORD);
-
         this.server = express();
+
+        const DB_USER = process.env.DB_USER;
+        const DB_PASSWORD = encodeURIComponent(process.env.DB_PASSWORD);
+
+        mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@carstock.qoqcxu6.mongodb.net/?retryWrites=true&w=majority`, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
         
         this.midllewares();
         this.routes();
