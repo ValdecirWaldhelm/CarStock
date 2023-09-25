@@ -3,3 +3,6 @@ node_modules
 
 #Readme
 README.md
+
+#DOTENV
+.env
