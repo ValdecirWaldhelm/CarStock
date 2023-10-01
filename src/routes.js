@@ -8,7 +8,7 @@ import CarController from "./controllers/CarController";
 const routes = new Router();
 const upload = multer(uploadConfig);
 
-// CARS 
+// CARS     
 routes.get('/cars', CarController.index);
 // routes.post('/cars', upload.array('fotos', 5), CarController.store); 
 routes.post('/cars', upload.array('fotos', ''), CarController.store); 

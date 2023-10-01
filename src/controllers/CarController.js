@@ -11,24 +11,67 @@ class CarController{
 
     async store(req, res){
         const filenames = req.files.map((file) => file.filename);
-        const { tipoveiculo, zerokm, modelo, versao, opcionais } = req.body;
+        const { 
+            destaque,
+            ofertas,
+            tipoveiculo, 
+            zerokm, 
+            placa,
+            marca,
+            modelo, 
+            versao, 
+            tipomotor,
+            anofabricacao,
+            anomodelo,
+            cambio,
+            km,
+            portas, 
+            cor,
+            combustivel,
+            carroceria,
+            preco,
+            observacao,
+            cadastro,
+            alteracao,
+            acessorios,
+            opcionais, 
+            
+        } = req.body;
+        const opcionaisArray = opcionais.split('\n').filter(opcional => opcional.trim() !== '');
+        const observacaoArray = observacao.split('\n').filter(observacoes => observacoes.trim() !== '');
+        const acessoriosArray = acessorios.split('\n').filter(acessorio => acessorio.trim() !== '');
 
         if(filenames <= 0){
             return res.status(400).send( "Envie ao menos 1 foto, para cadastro do veículo!" )
         }
 
         const car = await Car.create({
-            fotos: filenames,
+            destaque,
+            ofertas,
             tipoveiculo,
             zerokm,
+            placa,
+            marca,
             modelo,
             versao,
-            opcionais,
+            tipomotor,
+            anofabricacao,
+            anomodelo,
+            cambio,
+            km,
+            portas, 
+            cor,
+            combustivel,
+            carroceria,
+            preco,
+            observacao: observacaoArray,
+            cadastro,
+            alteracao,
+            opcionais: opcionaisArray,
+            acessorios: acessoriosArray,
+            fotos: filenames,
 
         })
-
-        console.log(req.body);
-        console.log(req.file);
 
         return res.json({
             car,
