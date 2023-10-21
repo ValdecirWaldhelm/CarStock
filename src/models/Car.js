@@ -33,12 +33,6 @@ const CarSchema = new Schema({
     fotos:[{
         type: String,
     }],     
-    // urlvideo: String,
-    // loja: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Loja',
-    //     //aqui será constuida a loja em Models
-    // }]
 
 }, 
 {
